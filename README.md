@@ -1,66 +1,158 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Project Overview
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a Task Management System built with Laravel and Laravel Admin. The application allows users to manage tasks, categories, and tags using an intuitive admin panel.
 
-## About Laravel
+### Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+• Task Management: Create, edit, delete, and assign tasks.
+• Category Management: Organize tasks into different categories.
+• Tag Management: Assign multiple tags to tasks.
+• Task Status Updates: Mark tasks as pending or completed.
+• Bulk Actions: Mark multiple tasks as completed at once.
+• Admin Dashboard: View statistics on tasks, categories, and tags.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Installation & Setup
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Clone the Repository
+   git clone https://github.com/GecaMelisa/task-manager.git
+   cd task-manager
 
-## Learning Laravel
+2. Install Dependencies
+   composer install
+   npm install
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. Configure Environment
+   • cp .env.example .env
+   • DB_DATABASE=your_database
+   • DB_USERNAME=your_username
+   • DB_PASSWORD=your_password
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+4. Run Migrations & Seed Database
+   php artisan migrate --seed
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+5. Start the Server
+   php artisan serve
+   The application will be available at http://127.0.0.1:8000
 
-## Laravel Sponsors
+### Admin Panel Access
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+• URL: http://127.0.0.1:8000/admin
+• Default Admin Credentials:
+• Username: admin
+• Password: password
 
-### Premium Partners
+To create a new admin user:
+• php artisan admin:create-user
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+If you forget the admin password, reset it via:
+• php artisan tinker
+Then run:
+•use Encore\Admin\Auth\Database\Administrator;
+Administrator::where('email', 'admin@example.com')->update(['password' => bcrypt('newpassword')]);
 
-## Contributing
+### Features & Usage Guide
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Task Management
 
-## Code of Conduct
+• Navigate to Admin Panel > Tasks
+• Click Create to add a new task
+• Edit task details such as title, description, due date, category, and tags
+• Use the bulk action to mark tasks as completed
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Category & Tag Management
 
-## Security Vulnerabilities
+• Navigate to Admin Panel > Categories or Tags
+• Create, edit, or delete categories/tags
+• Assign tasks to categories and tags
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Admin Dashboard
 
-## License
+•View task, category, and tag statistics
+• Quick access to task management
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Database Structure & Relationships
+
+1. **Tasks Table (tasks)**
+   | Column | Type | Constraints | Description |
+   |-------------|--------|------------------------------------|----------------------------------|
+   | id | INT | PRIMARY KEY, AUTO_INCREMENT | Unique Task ID |
+   | title | STRING | NOT NULL | Task Title |
+   | description | TEXT | NULLABLE | Task Description |
+   | due_date | DATE | NOT NULL | Task Due Date |
+   | status | ENUM | DEFAULT 'pending' | Task Status (Pending, Completed) |
+   | category_id | INT | FOREIGN KEY (`categories.id`) | Associated Category |
+   | created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Created Timestamp |
+   | updated_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Updated Timestamp |
+
+2. **Categories table (categories)**
+   | Column | Type | Constraints | Description |
+   |--------|--------|---------------------------|---------------|
+   | id | INT | PRIMARY KEY, AUTO_INCREMENT | Unique ID |
+   | name | STRING | NOT NULL, UNIQUE | Category Name |
+   | created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Created Timestamp |
+   | updated_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Updated Timestamp |
+
+3. **Tags table (tags)**
+   | Column | Type | Constraints | Description |
+   |--------|--------|---------------------------|-------------|
+   | id | INT | PRIMARY KEY, AUTO_INCREMENT | Unique ID |
+   | name | STRING | NOT NULL, UNIQUE | Tag Name |
+   | created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Created Timestamp |
+   | updated_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Updated Timestamp |
+
+4. **Pivot table (task_tag)**
+   | Column | Type | Constraints | Description |
+   |----------|------|---------------------------------|------------------------|
+   | task_id | INT | FOREIGN KEY (`tasks.id`) | Links to `tasks` table |
+   | tag_id | INT | FOREIGN KEY (`tags.id`) | Links to `tags` table |
+
+5. **Users Table (`users`)**
+   | Column | Type | Constraints | Description |
+   |------------|-----------|----------------------------------------|---------------------------|
+   | id | INT | PRIMARY KEY, AUTO_INCREMENT | Unique User ID |
+   | name | STRING | NOT NULL | User's Full Name |
+   | email | STRING | NOT NULL, UNIQUE | User Email Address |
+   | password | STRING | NOT NULL | Hashed Password |
+   | created_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Account Created Timestamp |
+   | updated_at | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP | Last Updated Timestamp |
+
+### Screenshots
+
+1. **Admin Login Page** - Users must log in with their credentials to access task management features
+   ![Admin Login Page](image.png)
+
+2. **Admin Dashboard** - Displays an overview of tasks, categories, and tags, providing quick access to task management.
+   ![Admin Dashboard](image-1.png)
+
+3. **Task List Page** - Displays a list of all tasks with details such as title, status, category, and tags. Tasks are color-coded based on their status for better visibility.
+   ![Task List Page](image-4.png)
+
+4. **Task List Page - Overview & Actions** - Displays all tasks with filtering, bulk actions, and export options. Also, allows users to edit, view, or delete a task.
+   ![Task List Page - Overview & Actions](image-6.png)(image-7.png)
+
+5. **Task Edit Page** - Users can modify task details such as title, description, category, tags, due date, and status. The page allows updating or deleting the task directly.
+   ![Task Edit Page](image-8.png)
+
+6. **Task Detail & Deletion Confirmation** - Users can view task details, including title, status, category, and tags. The page also allows editing and deleting a task, with a confirmation prompt before deletion to prevent accidental removals.
+   ![Task Detail & Deletion Confirmation](image-9.png)(image-10.png)
+
+7. **Task Filtering & Search** - The task list page includes a filtering and search feature, allowing users to search for tasks by ID, title, and status. Users can apply filters, search for specific tasks, and reset filters when needed. The results are dynamically displayed in the task list below.
+   ![Task Filtering & Search](image-11.png)
+
+8. **Task Creation Page** - Users can add a new task by entering the title, description, category, tags, due date, and status. Required fields are marked with an asterisk (\*). The Reset button clears the form, while the Submit button saves the task. The List button on the top-right navigates back to the task list.
+   ![Task Creation Page](image-14.png)
+
+9. **Category List Page** - Displays all available task categories in a structured table format. Users can filter, export, and manage categories efficiently
+   ![Category List Page](image-12.png)
+
+### Code Quality & Documentation
+
+•Follows MVC Architecture – The project adheres to the Model-View-Controller (MVC) pattern, ensuring clean separation of concerns and maintainability.
+• Well-Documented Functions – Key functions include inline comments explaining their purpose and logic.
+• Structured Migrations & Model Relationships:
+• Each model (Task, Category, Tag) has clearly defined relationships (one-to-many, many-to-many).
+• Migrations ensure database consistency and automatic schema generation.
+• Best Practices Used:
+• Mass assignment protection using $fillable in models.
+• Foreign key constraints in migrations for data integrity.
+• Laravel Admin panel integration for a user-friendly experience.

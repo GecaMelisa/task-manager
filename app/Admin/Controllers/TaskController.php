@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Task;
 use App\Models\Category;
+use App\Models\Tag; 
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -44,6 +45,11 @@ class TaskController extends AdminController
             return Category::find($categoryId)->name ?? 'Uncategorized';
         });
 
+        // Show associated tags
+        $grid->column('tags', __('Tags'))->display(function ($tags) {
+            return implode(', ', array_column($tags, 'name'));
+        });
+
         // Filters
         $grid->filter(function ($filter) {
             $filter->like('title', 'Title');
@@ -78,6 +84,10 @@ class TaskController extends AdminController
             ->options(Category::pluck('name', 'id'))
             ->required();
 
+        // Multiple select field for tags
+        $form->multipleSelect('tags', __('Tags'))
+            ->options(Tag::pluck('name', 'id'));
+
         $form->date('due_date', __('Due Date'))
             ->default(date('Y-m-d'));
 
@@ -87,6 +97,12 @@ class TaskController extends AdminController
                 'completed' => 'Completed'
             ])
             ->default('pending');
+
+            // Disable footer options
+            $form->disableViewCheck();
+            $form->disableEditingCheck();
+            $form->disableCreatingCheck();
+
 
         return $form;
     }
@@ -103,6 +119,11 @@ class TaskController extends AdminController
         $show->field('status', __('Status'));
         $show->field('category_id', __('Category'))->as(function ($categoryId) {
             return Category::find($categoryId)->name ?? 'Uncategorized';
+        });
+
+        // Show associated tags in detail view
+        $show->field('tags', __('Tags'))->as(function ($tags) {
+            return implode(', ', $tags->pluck('name')->toArray());
         });
 
         return $show;
