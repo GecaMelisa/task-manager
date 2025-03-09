@@ -21,12 +21,20 @@ class TagController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Tag());
-
+    
+        // Display columns
         $grid->column('id', __('ID'))->sortable();
         $grid->column('name', __('Tag Name'))->editable(); // Inline editing
-
+    
+        // Add filters
+        $grid->filter(function ($filter) {
+            $filter->like('name', 'Tag Name'); // Enables filtering by tag name
+            $filter->disableIdFilter(); // Disables the default ID filter
+        });
+    
         return $grid;
     }
+    
 
     /**
      * Tag form for creating/editing.
@@ -36,6 +44,11 @@ class TagController extends AdminController
         $form = new Form(new Tag());
 
         $form->text('name', __('Tag Name'))->required();
+
+        // Disable checkboxes
+        $form->disableViewCheck();
+        $form->disableEditingCheck();
+        $form->disableCreatingCheck();
 
         return $form;
     }

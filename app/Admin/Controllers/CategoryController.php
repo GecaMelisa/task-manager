@@ -21,12 +21,20 @@ class CategoryController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Category());
-
+    
         $grid->column('id', __('ID'))->sortable();
-        $grid->column('name', __('Name'))->editable(); // Inline editing
-
+        $grid->column('name', __('Name'))->editable();
+    
+        // Fiter Categories by name
+        $grid->filter(function ($filter) {
+            $filter->disableIdFilter(); // Ensure the ID filter is removed
+            $filter->like('name', 'Name'); 
+        });
+    
         return $grid;
     }
+    
+    
 
     /**
      * Category form for creating/editing.
@@ -36,6 +44,11 @@ class CategoryController extends AdminController
         $form = new Form(new Category());
 
         $form->text('name', __('Category Name'))->required();
+
+        // Disable additional options
+        $form->disableViewCheck();
+        $form->disableEditingCheck();
+        $form->disableCreatingCheck();
 
         return $form;
     }
