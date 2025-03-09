@@ -128,7 +128,7 @@ This is a Task Management System built with Laravel and Laravel Admin. The appli
    ![Admin Login Page](assets/image.png)
 
 2. **Admin Dashboard** - Displays an overview of tasks, categories, and tags, providing quick access to task management.
-   ![Admin Dashboard](<assets/!(image-1.png)>)
+   ![Admin Dashboard](assets/image-1.png)
 
 3. **Task List Page** - Displays a list of all tasks with details such as title, status, category, and tags. Tasks are color-coded based on their status for better visibility.
    ![Task List Page](assets/image-4.png)
