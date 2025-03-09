@@ -35,10 +35,10 @@ Before you install and run the project, ensure you have the following dependenci
 
 2. Install Dependencies
 
-```bash
-   composer install
-   npm install
-```
+    ```bash
+    composer install
+    npm install
+    ```
 
 3. Configure Environment
 
@@ -67,9 +67,9 @@ Before you install and run the project, ensure you have the following dependenci
 
 -   **To create a new admin user:**
 
-```bash
-    -   php artisan admin:create-user
-```
+    ```bash
+    php artisan admin:create-user
+    ```
 
 -   **If you forget the admin password, reset it via:**
     ```bash
@@ -77,7 +77,7 @@ Before you install and run the project, ensure you have the following dependenci
     ```
     -   Then run: -
     ```bash
-     use Encore\Admin\Auth\Database\Administrator; - Administrator::where('email', 'admin@example.com')->update(['password' => bcrypt('newpassword')]);
+    use Encore\Admin\Auth\Database\Administrator; - Administrator::where('email', 'admin@example.com')->update(['password' => bcrypt('newpassword')]);
     ```
 
 ### Features & Usage Guide
