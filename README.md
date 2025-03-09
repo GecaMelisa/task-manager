@@ -128,19 +128,21 @@ This is a Task Management System built with Laravel and Laravel Admin. The appli
    ![Admin Login Page](assets/image.png)
 
 2. **Admin Dashboard** - Displays an overview of tasks, categories, and tags, providing quick access to task management.
-   ![Admin Dashboard](assets/image-1.png)
+   ![Admin Dashboard](<assets/!(image-1.png)>)
 
 3. **Task List Page** - Displays a list of all tasks with details such as title, status, category, and tags. Tasks are color-coded based on their status for better visibility.
    ![Task List Page](assets/image-4.png)
 
 4. **Task List Page - Overview & Actions** - Displays all tasks with filtering, bulk actions, and export options. Also, allows users to edit, view, or delete a task.
-   ![Task List Page - Overview & Actions](assets/image-6.png)(assets/image-7.png)
+   ![Task List Page - Overview & Actions](assets/image-6.png)
+   ![Task List Page - Overview & Actions](assets/image-7.png)
 
 5. **Task Edit Page** - Users can modify task details such as title, description, category, tags, due date, and status. The page allows updating or deleting the task directly.
-   ![Task Edit Page]!(assets/image-15.png)
+   ![Task Edit Page](assets/image-15.png)
 
 6. **Task Detail & Deletion Confirmation** - Users can view task details, including title, status, category, and tags. The page also allows editing and deleting a task, with a confirmation prompt before deletion to prevent accidental removals.
-   ![Task Detail & Deletion Confirmation](assets/image-9.png)(assets/image-10.png)
+   ![Task Detail & Deletion Confirmation](assets/image-9.png)
+   ![Task Detail & Deletion Confirmation](assets/image-10.png)
 
 7. **Task Filtering & Search** - The task list page includes a filtering and search feature, allowing users to search for tasks by ID, title, and status. Users can apply filters, search for specific tasks, and reset filters when needed. The results are dynamically displayed in the task list below.
    ![Task Filtering & Search](assets/image-11.png)
@@ -158,7 +160,8 @@ This is a Task Management System built with Laravel and Laravel Admin. The appli
     ![Create Category](assets/image-17.png)
 
 12. **Edit & Delete Category** - The edit page allows users to modify an existing category name and submit changes. A delete option is available, which prompts a confirmation dialog before permanently removing the category.
-    ![Edit & Delete Category](assets/image-18.png)(assets/image-19.png)
+    ![Edit & Delete Category](assets/image-18.png)
+    ![Edit & Delete Category](assets/image-19.png)
 
 13. **Tags List Page** - This page displays a list of all tags with their respective IDs and names. Users can create new tags, export data, and perform actions like editing or deleting existing tags.
     ![Tags List Page](assets/image-20.png)
@@ -167,7 +170,8 @@ This is a Task Management System built with Laravel and Laravel Admin. The appli
     ![Tags List with Filter](assets/image-21.png)
 
 15. **Tag Management - Create & Edit** - Users can create a new tag by entering a name and clicking Submit, or edit an existing tag by updating the name and saving changes. The Reset button clears inputs, and navigation options include List, View, and Delete for managing tags efficiently.
-    ![Tag Management - Create & Edit*](assets/image-22.png)(assets/image-23.png)
+    ![Tag Management - Create & Edit*](assets/image-22.png)
+    ![Tag Management - Create & Edit*](assets/image-23.png)
 
 ### Code Quality & Documentation
 
