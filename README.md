@@ -2,11 +2,23 @@
 
 This is a Task Management System built with Laravel and Laravel Admin. The application allows users to manage tasks, categories, and tags using an intuitive admin panel.
 
+## Prerequisites
+
+Before you install and run the project, ensure you have the following dependencies installed:
+
+-   PHP >= 7.4
+-   Composer
+-   Node.js & npm
+-   MySQL (or any other database used)
+-   Laravel (installed via Composer)
+
+## Installation & Setup
+
 ### Features
 
--   **Task Management**: Create, edit, delete, and assign tasks.
--   **Category Management**: Organize tasks into different categories.
--   **Tag Management**: Assign multiple tags to tasks.
+-   **Task Management:** Allows users to create, edit, delete, and assign tasks to specific categories and tags.
+-   **Category Management:** Enables organization of tasks into different categories for better management.
+-   **Tag Management:** Facilitates assigning multiple tags to tasks for enhanced filtering and searchability.
 -   **Task Status Updates**: Mark tasks as pending or completed.
 -   **Bulk Actions**: Mark multiple tasks as completed at once.
 -   **Admin Dashboard**: View statistics on tasks, categories, and tags.
@@ -15,15 +27,18 @@ This is a Task Management System built with Laravel and Laravel Admin. The appli
 
 1. **Clone the Repository**
 
-    ```sh
+    ```bash
     git clone https://github.com/GecaMelisa/task-manager.git
     cd task-manager
 
     ```
 
 2. Install Dependencies
+
+```bash
    composer install
    npm install
+```
 
 3. Configure Environment
 
@@ -37,24 +52,33 @@ This is a Task Management System built with Laravel and Laravel Admin. The appli
 -   **php artisan migrate --seed**
 
 5. Start the Server
-    - **php artisan serve**
+    ```bash
+    php artisan serve
+    ```
     - **The application will be available at http://127.0.0.1:8000**
 
-### Admin Panel Access
+## Admin Panel Access
 
--   **URL: http://127.0.0.1:8000/admin**
+-   **URL:** [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
 -   **Default Admin Credentials:**
 
-    -   Username: admin
-    -   Password: password
+    -   **Username:** `admin`
+    -   **Password:** `password`
 
 -   **To create a new admin user:**
 
+```bash
     -   php artisan admin:create-user
+```
 
 -   **If you forget the admin password, reset it via:**
-    -   php artisan tinker
-    -   Then run: - use Encore\Admin\Auth\Database\Administrator; - Administrator::where('email', 'admin@example.com')->update(['password' => bcrypt('newpassword')]);
+    ```bash
+    php artisan tinker
+    ```
+    -   Then run: -
+    ```bash
+     use Encore\Admin\Auth\Database\Administrator; - Administrator::where('email', 'admin@example.com')->update(['password' => bcrypt('newpassword')]);
+    ```
 
 ### Features & Usage Guide
 
@@ -183,3 +207,7 @@ This is a Task Management System built with Laravel and Laravel Admin. The appli
     -   Mass assignment protection using `$fillable` in models.
     -   Foreign key constraints in migrations for data integrity.
 -   **Laravel Admin Panel** – Provides a user-friendly experience.
+
+```
+
+```
